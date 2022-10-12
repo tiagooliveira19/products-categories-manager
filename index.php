@@ -20,7 +20,14 @@
     <div class="row">
         <div class="col-md-12 main">
             <div class="col-md-2 menu">
-                <div class="col-md-12 item-menu item-menu-ativo" id="produtos">
+                <div class="col-md-12 item-menu item-menu-ativo" id="pagina-inicial">
+                    <div class="col-md-1 tarja"></div>
+                    <div class="col-md-11 descricao">
+                        Página Inicial
+                    </div>
+                </div>
+
+                <div class="col-md-12 item-menu" id="produtos">
                     <div class="col-md-1 tarja"></div>
                     <div class="col-md-11 descricao">
                         Produtos
@@ -38,23 +45,29 @@
 
             <div class="col-md-10 conteudo">
 
-                <div class="row produtos">
-                <!--<div class="row oculto produtos">-->
+                <div class="row pagina-inicial">
+                <!--<div class="row oculto pagina-inicial">-->
+                    <?php include 'pages/pagina-inicial.php'; ?>
+                </div>
+
+                <div class="row oculto produtos">
                     <?php include 'pages/produtos.php'; ?>
                 </div>
 
+                <div class="row oculto produtos-cadastro">
+                <!--<div class="row produtos-cadastro">-->
+                    <?php include 'pages/cadastro/cadastrar-produto.php'; ?>
+                </div>
+
                 <div class="row oculto categorias">
-                <!--<div class="row categorias">-->
                     <?php include 'pages/categorias.php'; ?>
                 </div>
 
                 <div class="row oculto categorias-cadastro">
-                <!--<div class="row categorias-cadastro">-->
                     <?php include 'pages/cadastro/cadastrar-categoria.php'; ?>
                 </div>
 
                 <div class="row oculto categorias-edicao">
-                    <!--<div class="row categorias-edicao">-->
                     <?php include 'pages/edicao/editar-categoria.php'; ?>
                 </div>
             </div>

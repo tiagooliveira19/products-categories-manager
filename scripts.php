@@ -5,46 +5,91 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"
         integrity="sha512-sR3EKGp4SG8zs7B0MEUxDeq8rw9wsuGVYNfbbO/GLCJ59LBE4baEfQBVsP2Y/h2n8M19YV1mujFANO1yA3ko7Q==" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.1/slimselect.min.css" rel="stylesheet"></link>
 <script>
 
     $(document).ready(function () {
 
+        let paginaInicial = 'pagina-inicial';
         let produtos = 'produtos';
         let categorias = 'categorias';
 
-        // Máscara telefone no form
-        $('input[type="tel"]').inputmask({
-            mask: ["(99) 9999-9999", "(99) 99999-9999"],
-            keepStatic: true
+        new SlimSelect({
+            select: '.select-categorias',
+            placeholder: 'Selecione uma categoria'
+        });
+
+        $(".money").inputmask( 'currency', {
+            "autoUnmask": true,
+            radixPoint:",",
+            groupSeparator: ".",
+            allowMinus: false,
+            prefix: 'R$ ',
+            digits: 2,
+            digitsOptional: false,
+            rightAlign: true,
+            unmaskAsNumber: true
         });
 
         /* -- Comportamento menu -- */
-        $('#produtos').on('click', function () {
-            $('#categorias').toggleClass('item-menu-ativo');
-            $(this).toggleClass('item-menu-ativo');
+        $('#pagina-inicial').on('click', function () {
+            $('#produtos , #categorias').removeClass('item-menu-ativo');
+            $(this).addClass('item-menu-ativo');
 
-            $('.categorias, .categorias-cadastro').fadeOut('fast');
+            $('.produtos, .produtos-cadastro, .categorias, .categorias-cadastro, .categorias-edicao').fadeOut('fast');
+            $('.pagina-inicial').removeClass('oculto').fadeIn('slow');
+            $('#conteudo-pagina-inicial').fadeIn('slow');
+        });
+
+        $('#produtos').on('click', function () {
+            $('#pagina-inicial, #categorias').removeClass('item-menu-ativo');
+            $(this).addClass('item-menu-ativo');
+
+            $('.pagina-inicial, .produtos-cadastro, .categorias, .categorias-cadastro, .categorias-edicao').fadeOut('fast');
             $('.produtos').removeClass('oculto').fadeIn('slow');
             $('#conteudo-produtos').fadeIn('slow');
         });
 
         $('#categorias').on('click', function () {
-            $('#produtos').toggleClass('item-menu-ativo');
-            $(this).toggleClass('item-menu-ativo');
+            $('#pagina-inicial, #produtos').removeClass('item-menu-ativo');
+            $(this).addClass('item-menu-ativo');
 
-            $('.produtos, .categorias-cadastro').fadeOut('fast');
+            $('.pagina-inicial, .produtos, .produtos-cadastro, .categorias-cadastro, .categorias-edicao').fadeOut('fast');
             $('.categorias').removeClass('oculto').fadeIn('slow');
             $('#conteudo-categorias').fadeIn('slow');
         });
 
+        $('#' + paginaInicial).on('mouseover', function () {
+            $('#produtos, #categorias').removeClass('mouseOverMenu');
+            $(this).addClass('mouseOverMenu')
+        });
+
         $('#' + produtos).on('mouseover', function () {
-            $('#categorias').removeClass('mouseOverMenu');
-            $(this).toggleClass('mouseOverMenu')
+            $('#pagina-inicial, #categorias').removeClass('mouseOverMenu');
+            $(this).addClass('mouseOverMenu')
         });
 
         $('#' + categorias).on('mouseover', function () {
-            $('#produtos').removeClass('mouseOverMenu');
-            $(this).toggleClass('mouseOverMenu')
+            $('#pagina-inicial, #produtos').removeClass('mouseOverMenu');
+            $(this).addClass('mouseOverMenu')
+        });
+
+        // Muda para o formulário cadastro de produto
+        $('#btn-cadastrar-produtos').click(function () {
+            $('#conteudo-produtos').fadeOut('slow', function () {
+                $('.produtos-cadastro').removeClass('oculto').fadeIn('slow');
+            });
+        });
+
+        // Volta para listagem de produto
+        $('.btn-voltar-produtos').click(function () {
+
+            location.href = 'http://localhost/';
+
+            $('.produtos-cadastro, #conteudo-pagina-inicial, #conteudo-categorias').fadeOut('slow', function () {
+                $('#conteudo-produtos').removeClass('oculto').fadeIn('slow');
+            });
         });
 
         // Muda para o formulário cadastro de categoria
@@ -59,7 +104,7 @@
 
             location.href = 'http://localhost/';
 
-            $('.categorias-cadastro, .categorias-edicao').fadeOut('slow', function () {
+            $('.categorias-cadastro, .categorias-edicao, #conteudo-pagina-inicial, #conteudo-produtos').fadeOut('slow', function () {
                 $('#conteudo-categorias').removeClass('oculto').fadeIn('slow');
             });
         });
@@ -67,27 +112,11 @@
         // Verifica se o action e o id estão setados para mudar de página
         if ('<?php echo $action; ?>' !== '' && '<?php echo $id; ?>' !== '') {
 
-            $('#conteudo-categorias').fadeOut('slow', function () {
+            $('#conteudo-pagina-inicial, #conteudo-produtos, #conteudo-categorias').fadeOut('slow', function () {
                 $('.categorias-edicao').removeClass('oculto').fadeIn('slow');
+                $('#pagina-inicial, #produtos').removeClass('item-menu-ativo');
+                $('#categorias').addClass('item-menu-ativo');
             });
-        }
-
-        // Muda para o formulário de cadastro
-        /*$('#btn-login').click(function () {
-            $('.cadastro').fadeOut('slow', function () {
-                $('.login').fadeIn('slow');
-            });
-        });*/
-
-        // Data no formato para bd
-        function formataData (data) {
-            return data.getFullYear() + '-' + (data.getMonth() + 1) + '-' + data.getDate();
-        }
-
-        // Data no formato para exibição ao usuário
-        function formataDataExibe (data) {
-            let date = new Date(data);
-            return date.toLocaleDateString('pt-BR');
         }
     });
 </script>

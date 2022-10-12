@@ -1,68 +1,72 @@
-<!--<div class="login">-->
-<div class="conteudo-produtos">
+<?php
+
+    $select_produtos = 'SELECT id, name, description, price, amount, category_id, created_at, updated_at FROM produtos WHERE TRUE ';
+
+    $result = mysqli_query($conexao, $select_produtos);
+    $qtd_registros = mysqli_num_rows($result);
+?>
+
+<div id="conteudo-produtos">
     <div class="col-md-12 w-35 cabecalho">
-        <label class="cabecalho-label">Login</label>
+        <label class="cabecalho-label">Produtos</label>
     </div>
 
-    <div class="col-md-12 mt-5">
-        <div class="col-md-4 margin-auto">
+    <div class="col-md-10 margin-auto mt-5">
+        <table class="table table-striped">
 
-            <div class="txt-center">
-                <img src="images/login.svg" class="w-35" alt="imagem-login" id="imagem-login" >
-            </div>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Qtd.</th>
+                <th>Data de Criação</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
 
-            <form class="mt-5" autocomplete="off" id="form-login">
-                <div class="col">
-                    <input type="text" class="form-control" name="nome" id="nome" required placeholder="Nome">
-                </div>
-                <div class="col mt-3">
-                    <input type="password" class="form-control" name="senha" id="senha" required placeholder="Senha">
-                </div>
+            <tbody>
+            <?php
 
-                <div class="col mt-3">
-                    <button type="submit" class="btn btn-primary w-100">Logar</button>
-                </div>
-                <div class="col mt-3">
-                    <button type="button" class="btn btn-danger w-100" id="btn-cadastro">Cadastre-se</button>
-                </div>
-            </form>
+                if ($qtd_registros > 0) {
+
+                    while ($produto = mysqli_fetch_object($result)) { ?>
+
+                        <tr>
+                            <td><?php echo $produto->id; ?></td>
+                            <td><?php echo $produto->name; ?></td>
+                            <td><?php echo mb_strimwidth($produto->description, 0, 50, '...'); ?></td>
+                            <td><?php echo $produto->price; ?></td>
+                            <td><?php echo $produto->amount; ?></td>
+                            <td><?php echo date('d/m/Y', strtotime($produto->created_at)); ?></td>
+                            <td></td>
+                            <!--<td>
+                                <a href="index.php?action=editar&id=<?php /*echo $produto->id; */?>">
+                                    <span class="links pointer" title="Editar"><i class="fas fa-edit"></i></span>
+                                </a>
+
+                                <a href="/app/validacoes/exclusao/excluir_categoria.php?id=<?php /*echo $produto->id; */?>">
+                                    <span class="links pointer ml-10" title="Deletar"><i class="fas fa-trash-alt"></i></span>
+                                </a>
+                            </td>-->
+                        </tr>
+                    <?php }
+
+                } else { ?>
+
+                    <tr>
+                        <td colspan="7" class="text-center">Nenhum registro encontrado!</td>
+                    </tr>
+                <?php }
+            ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-10 margin-auto mt-5">
+        <div class="col-md-6 float-end">
+            <button type="button" class="btn btn-primary float-end" id="btn-cadastrar-produtos">Cadastrar Produtos</button>
         </div>
     </div>
 </div>
-
-<!--<div class="cadastro">
-    <div class="col-md-12 w-35 cabecalho">
-        <label class="cabecalho-label">Cadastro</label>
-    </div>
-
-    <div class="col-md-12 mt-5">
-        <div class="col-md-4 margin-auto">
-
-            <div class="txt-center">
-                <img src="images/user.svg" class="w-35" alt="imagem-cadastro" id="imagem-cadastro" >
-            </div>
-
-            <form class="mt-5" autocomplete="off" id="form-cadastro">
-                <div class="col">
-                    <input type="text" class="form-control" name="nome" id="nome" required placeholder="Nome">
-                </div>
-                <div class="col mt-3">
-                    <input type="password" class="form-control" name="senha" id="senha" required placeholder="Senha">
-                </div>
-                <div class="col mt-3">
-                    <input type="tel" class="form-control" name="telefone" id="telefone" required placeholder="Telefone">
-                </div>
-                <div class="col mt-3">
-                    <input type="text" class="form-control" name="endereco" id="endereco" required placeholder="Endereço">
-                </div>
-
-                <div class="col mt-3">
-                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
-                </div>
-                <div class="col mt-3">
-                    <button type="button" class="btn btn-danger w-100" id="btn-login">Login</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>-->

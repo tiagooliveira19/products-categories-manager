@@ -155,6 +155,10 @@ code {
     margin-left: 10px !important;
 }
 
+.ml-50 {
+    margin-left: 50px !important;
+}
+
 .pointer {
     cursor: pointer !important;
 }

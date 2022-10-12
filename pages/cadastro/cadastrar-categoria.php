@@ -10,11 +10,11 @@
 
             <form class="mt-100" autocomplete="off" method="post" action="/app/validacoes/cadastro/cadastrar_categoria.php">
 
-                <div class="col">
+                <div class="row">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Nome" required>
                 </div>
 
-                <div class="col mt-3">
+                <div class="row mt-3">
                     <button type="submit" class="btn btn-success w-100">Cadastrar</button>
                 </div>
             </form>

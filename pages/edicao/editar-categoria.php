@@ -1,15 +1,22 @@
 <?php
 
-    $id = $_GET['id'];
-
-    $select_categoria = 'SELECT name, created_at, updated_at FROM categorias WHERE id = '.$id;
-    $result = mysqli_query($conexao, $select_categoria);
-
-    $categoria = mysqli_fetch_object($result);
+    $id = $_GET['id'] ?? '';
+    $nome =  '';
+    $data_criacao =  '';
     $data_atualizacao =  '';
 
-    if ($categoria->updated_at !== null) {
-        $data_atualizacao = date('d/m/Y H:s', strtotime($categoria->updated_at));
+    if ($id) {
+
+        $select_categoria = 'SELECT name, created_at, updated_at FROM categorias WHERE id = '.$id;
+        $result = mysqli_query($conexao, $select_categoria);
+
+        $categoria = mysqli_fetch_object($result);
+        $nome = $categoria->name;
+        $data_criacao = date('d/m/Y H:i', strtotime($categoria->created_at));
+
+        if ($categoria->updated_at !== null) {
+            $data_atualizacao = date('d/m/Y H:i', strtotime($categoria->updated_at));
+        }
     }
 ?>
 
@@ -27,21 +34,21 @@
 
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
 
-                <div class="col">
-                    <input type="text" class="form-control" name="name" id="name" title="Nome" placeholder="Nome" value="<?php echo $categoria->name; ?>" required>
+                <div class="row">
+                    <input type="text" class="form-control" name="name" id="name" title="Nome" placeholder="Nome" value="<?php echo $nome; ?>" required>
                 </div>
 
-                <div class="col mt-2">
+                <div class="row mt-2">
                     <input type="text" class="form-control" name="created_at" id="created_at" title="Data Criação" placeholder="Data Criação"
-                           value="<?php echo date('d/m/Y H:s', strtotime($categoria->created_at)); ?>" readonly>
+                           value="<?php echo $data_criacao; ?>" readonly>
                 </div>
 
-                <div class="col mt-2">
+                <div class="row mt-2">
                     <input type="text" class="form-control" name="updated_at" id="updated_at" title="Data Atualização" placeholder="Data Atualização"
                            value="<?php echo $data_atualizacao; ?>" readonly>
                 </div>
 
-                <div class="col mt-3">
+                <div class="row mt-3">
                     <button type="submit" class="btn btn-success w-100">Salvar</button>
                 </div>
             </form>
