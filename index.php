@@ -2,6 +2,8 @@
 
     include 'config/conexao.php';
 
+    $action = $_GET['action'] ?? '';
+    $id = $_GET['id'] ?? '';
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +50,12 @@
 
                 <div class="row oculto categorias-cadastro">
                 <!--<div class="row categorias-cadastro">-->
-                    <?php include 'pages/cadastrar-categoria.php'; ?>
+                    <?php include 'pages/cadastro/cadastrar-categoria.php'; ?>
+                </div>
+
+                <div class="row oculto categorias-edicao">
+                    <!--<div class="row categorias-edicao">-->
+                    <?php include 'pages/edicao/editar-categoria.php'; ?>
                 </div>
             </div>
         </div>

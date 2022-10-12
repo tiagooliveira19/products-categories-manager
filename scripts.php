@@ -54,6 +54,24 @@
             });
         });
 
+        // Volta para listagem de categorias
+        $('.btn-voltar-categorias').click(function () {
+
+            location.href = 'http://localhost/';
+
+            $('.categorias-cadastro, .categorias-edicao').fadeOut('slow', function () {
+                $('#conteudo-categorias').removeClass('oculto').fadeIn('slow');
+            });
+        });
+
+        // Verifica se o action e o id estão setados para mudar de página
+        if ('<?php echo $action; ?>' !== '' && '<?php echo $id; ?>' !== '') {
+
+            $('#conteudo-categorias').fadeOut('slow', function () {
+                $('.categorias-edicao').removeClass('oculto').fadeIn('slow');
+            });
+        }
+
         // Muda para o formulário de cadastro
         /*$('#btn-login').click(function () {
             $('.cadastro').fadeOut('slow', function () {

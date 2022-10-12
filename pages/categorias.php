@@ -34,16 +34,16 @@
                             <tr>
                                 <td><?php echo $categoria->id; ?></td>
                                 <td><?php echo $categoria->name; ?></td>
-                                <td><?php echo date('d/m/Y', $categoria->created_at); ?></td>
-                                <td></td>
-                                <!--<td>
-                                    <a href="index.php?action=atualizar&id=<?php /*echo $categoria->id; */?>">
-                                        <span class="links ml-1" title="Editar"><i class="fas fa-edit"></i></span>
+                                <td><?php echo date('d/m/Y', strtotime($categoria->created_at)); ?></td>
+                                <td>
+                                    <a href="index.php?action=editar&id=<?php echo $categoria->id; ?>">
+                                        <span class="links pointer" title="Editar"><i class="fas fa-edit"></i></span>
                                     </a>
-                                    <a href="sistema/validacoes/exclusao/excluir-endereco.php?id=<?php /*echo $categoria->id; */?>">
-                                        <span class="links ml-1" title="Deletar"><i class="fas fa-trash-alt"></i></span>
+
+                                    <a href="/app/validacoes/exclusao/excluir_categoria.php?id=<?php echo $categoria->id; ?>">
+                                        <span class="links pointer ml-10" title="Deletar"><i class="fas fa-trash-alt"></i></span>
                                     </a>
-                                </td>-->
+                                </td>
                             </tr>
                         <?php }
 

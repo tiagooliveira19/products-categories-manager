@@ -3,12 +3,12 @@ body {
 }
 
 a {
-    color: #000000;
-    text-decoration: none;
+    color: #000000 !important;
+    text-decoration: none !important;
 }
 
 a:hover {
-    color: #000000;
+    color: #000000 !important;
     opacity: 0.7;
 }
 
@@ -143,30 +143,18 @@ code {
     display: none !important;
 }
 
-.cliente-logado span {
-    margin: 45px;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.cliente-pedidos span {
-    margin: 45px;
-    font-size: 15px;
-}
-
-.div-cardapio {
-    display: flex;
-    margin-top: 80px !important;
-}
-
-.itens-cardapio {
-    font-size: 13px;
-}
-
-#btn-pedido {
-    line-height: 1 !important;
+.mt-100 {
+    margin-top: 100px !important;
 }
 
 .ml-auto {
     margin-left: auto;
+}
+
+.ml-10 {
+    margin-left: 10px !important;
+}
+
+.pointer {
+    cursor: pointer !important;
 }
