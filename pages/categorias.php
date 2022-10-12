@@ -1,7 +1,6 @@
 <?php
 
-    $select_categorias = 'SELECT id, name, created_at, updated_at FROM categorias WHERE TRUE ';
-
+    $select_categorias = 'SELECT id, name, created_at, updated_at FROM categorias ';
     $result = mysqli_query($conexao, $select_categorias);
     $qtd_registros = mysqli_num_rows($result);
 ?>

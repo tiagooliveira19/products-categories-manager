@@ -46,7 +46,6 @@
             <div class="col-md-10 conteudo">
 
                 <div class="row pagina-inicial">
-                <!--<div class="row oculto pagina-inicial">-->
                     <?php include 'pages/pagina-inicial.php'; ?>
                 </div>
 
@@ -55,8 +54,11 @@
                 </div>
 
                 <div class="row oculto produtos-cadastro">
-                <!--<div class="row produtos-cadastro">-->
                     <?php include 'pages/cadastro/cadastrar-produto.php'; ?>
+                </div>
+
+                <div class="row oculto produtos-edicao">
+                    <?php include 'pages/edicao/editar-produto.php'; ?>
                 </div>
 
                 <div class="row oculto categorias">

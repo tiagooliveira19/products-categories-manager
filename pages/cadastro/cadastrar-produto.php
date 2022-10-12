@@ -49,7 +49,9 @@
                 </div>
 
                 <div class="row mt-3">
-                    <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                    </div>
                 </div>
             </form>
         </div>
