@@ -36,7 +36,7 @@
                             <td><?php echo $produto->id; ?></td>
                             <td><?php echo $produto->name; ?></td>
                             <td><?php echo mb_strimwidth($produto->description, 0, 50, '...'); ?></td>
-                            <td class="text-left money"><?php echo $produto->price; ?></td>
+                            <td class="money"><?php echo $produto->price; ?></td>
                             <td><?php echo $produto->amount; ?></td>
                             <td><?php echo date('d/m/Y', strtotime($produto->created_at)); ?></td>
                             <td>

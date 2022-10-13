@@ -11,8 +11,8 @@ $(document).ready(function () {
     $('.btn-voltar-produtos').click(function () {
 
         location.href = 'http://localhost/';
-
-        $('.produtos-cadastro, #conteudo-pagina-inicial, #conteudo-categorias').fadeOut('slow', function () {
+        
+        $('.produtos-cadastro, .produtos-edicao, .pagina-inicial, .categorias, .categorias-cadastro, .categorias-edicao').fadeOut('slow', function () {
             $('#conteudo-produtos').removeClass('oculto').fadeIn('slow');
         });
     });
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
         location.href = 'http://localhost/';
 
-        $('.categorias-cadastro, .categorias-edicao, #conteudo-pagina-inicial, #conteudo-produtos').fadeOut('slow', function () {
+        $('.categorias-cadastro, .categorias-edicao, .pagina-inicial, .produtos, .produtos-cadastro, .produtos-edicao').fadeOut('slow', function () {
             $('#conteudo-categorias').removeClass('oculto').fadeIn('slow');
         });
     });

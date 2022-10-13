@@ -12,4 +12,4 @@
                        VALUES ("'.$name.'", "'.$description.'", "'.$price.'", "'.$amount.'", "'.$category_id.'", NOW())';
     mysqli_query($conexao, $insert_produto);
 
-    header("location: ../../../index.php?msg=sucesso");
+    header("location: ../../../index.php?msg=cadastro");

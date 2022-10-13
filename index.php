@@ -4,6 +4,7 @@
 
     $action = $_GET['action'] ?? '';
     $id = $_GET['id'] ?? '';
+    $msg = $_GET['msg'] ?? '';
 ?>
 
 <!DOCTYPE html>

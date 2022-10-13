@@ -54,5 +54,21 @@
                 });
             }
         }
+
+        // Exibe mensagem de acordo com o retorno
+        if ('<?php echo $msg; ?>' !== '') {
+
+            if ('<?php echo $msg; ?>' === 'cadastro') {
+                swal("", 'Cadastro realizado com sucesso!', "success");
+            }
+
+            if ('<?php echo $msg; ?>' === 'atualizacao') {
+                swal("", 'Alteração realizada com sucesso!', "success");
+            }
+
+            if ('<?php echo $msg; ?>' === 'exclusao') {
+                swal("", 'Exclusão realizada com sucesso!', "success");
+            }
+        }
     });
 </script>
